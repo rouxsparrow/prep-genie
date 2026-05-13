@@ -113,6 +113,20 @@ export default async function PlannerPage({
         </div>
       ) : null}
 
+      {recipes.length === 0 ? (
+        <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+          No recipes yet. Add recipes before planning:{" "}
+          <Link className="underline" href="/app/recipes/new">
+            New recipe
+          </Link>{" "}
+          or{" "}
+          <Link className="underline" href="/app/recipes/import">
+            Import JSON
+          </Link>
+          .
+        </div>
+      ) : null}
+
       <div className="space-y-6">
         {people.map((person) => {
           const slots = mealSlotsByCount[person.meals_per_day];

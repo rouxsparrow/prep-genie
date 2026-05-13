@@ -9,6 +9,7 @@ import { getOrCreateWeeklyPlan, listPlanMeals, listPlanPortions, type MealSlot }
 import { toWeekStartDateISO, weekDatesFromStart } from "@/lib/date/week";
 import { buildShoppingList } from "@/lib/shopping/shopping";
 import { getSlotRatios, solveSlot } from "@/lib/solver/solver";
+import PrintButton from "@/components/print-button";
 
 export default async function ShoppingPage({
   searchParams,
@@ -180,6 +181,7 @@ export default async function ShoppingPage({
           <button className="h-10 rounded-md border bg-white px-3 text-sm font-medium" type="submit">
             Refresh
           </button>
+          {lines.length > 0 ? <PrintButton /> : null}
         </form>
       </div>
 
