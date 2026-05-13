@@ -16,6 +16,19 @@ function normalizeIngredientKey(name: string) {
   return name.trim().toLowerCase();
 }
 
+function inferStoreCategory(name: string): string {
+  const key = normalizeIngredientKey(name);
+
+  if (/(chicken|beef|pork|fish|salmon|tuna|shrimp|egg)\b/.test(key)) return "Protein";
+  if (/(rice|pasta|noodle|bread|oat|potato|sweet potato|tortilla)\b/.test(key)) return "Carbs";
+  if (/(milk|yogurt|cheese|butter)\b/.test(key)) return "Dairy";
+  if (/(spinach|lettuce|kale|broccoli|carrot|onion|garlic|tomato|pepper|cucumber|mushroom)\b/.test(key))
+    return "Produce";
+  if (/(salt|pepper|paprika|cumin|oregano|basil|chili|soy sauce|vinegar|oil)\b/.test(key))
+    return "Pantry";
+  return "Other";
+}
+
 export function computeIngredientsForCookedGrams({
   recipe,
   cookedGrams,
@@ -60,7 +73,7 @@ export function buildShoppingList({
       const key = normalizeIngredientKey(ing.name);
       const existing = totals.get(key);
       const nextGrams = (existing?.grams ?? 0) + ing.grams;
-      totals.set(key, { key, name: ing.name, grams: nextGrams });
+      totals.set(key, { key, name: ing.name, grams: nextGrams, store_category: inferStoreCategory(ing.name) });
     }
   }
 

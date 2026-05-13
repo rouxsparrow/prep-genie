@@ -127,7 +127,17 @@ export default async function ShoppingPage({
   const groups =
     group === "ingredient"
       ? [{ title: "Ingredients", lines }]
-      : [{ title: "Ungrouped (store category TBD)", lines }];
+      : Array.from(
+          lines.reduce((acc, line) => {
+            const key = line.store_category ?? "Other";
+            const existing = acc.get(key) ?? [];
+            existing.push(line);
+            acc.set(key, existing);
+            return acc;
+          }, new Map<string, typeof lines>()),
+        )
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([title, groupedLines]) => ({ title, lines: groupedLines }));
 
   return (
     <div className="space-y-6">
