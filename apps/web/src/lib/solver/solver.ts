@@ -48,7 +48,7 @@ function clampGrams(category: Category, grams: number, clamps: CategoryClamps | 
   return { grams: out, clampApplied: applied };
 }
 
-function macrosFor(recipe: RecipeRow, gramsCooked: number): SlotMacros {
+export function macrosForRecipe(recipe: RecipeRow, gramsCooked: number): SlotMacros {
   const factor = gramsCooked / 100;
   return {
     kcal: recipe.nutrition_kcal_per_100g * factor,
@@ -145,9 +145,9 @@ export function solveSlot({
   // Simplified MVP: if protein manual set, keep protein fixed; compute carb from target if not manual; veg fills kcal.
   // If carb manual set, keep carb fixed; veg fills remaining kcal.
   if (vegRecipe) {
-    const proteinMacros = proteinRecipe ? macrosFor(proteinRecipe, portions.protein.grams_cooked) : undefined;
-    const carbMacros = carbRecipe ? macrosFor(carbRecipe, portions.carb.grams_cooked) : undefined;
-    const extraMacros = extraRecipe ? macrosFor(extraRecipe, portions.extra.grams_cooked) : undefined;
+    const proteinMacros = proteinRecipe ? macrosForRecipe(proteinRecipe, portions.protein.grams_cooked) : undefined;
+    const carbMacros = carbRecipe ? macrosForRecipe(carbRecipe, portions.carb.grams_cooked) : undefined;
+    const extraMacros = extraRecipe ? macrosForRecipe(extraRecipe, portions.extra.grams_cooked) : undefined;
 
     let current: SlotMacros = { kcal: 0, protein_g: 0, carbs_g: 0, fat_g: 0 };
     if (proteinMacros) current = addMacros(current, proteinMacros);
@@ -165,10 +165,10 @@ export function solveSlot({
 
   // Compute achieved macros.
   let macros: SlotMacros = { kcal: 0, protein_g: 0, carbs_g: 0, fat_g: 0 };
-  if (proteinRecipe) macros = addMacros(macros, macrosFor(proteinRecipe, portions.protein.grams_cooked));
-  if (carbRecipe) macros = addMacros(macros, macrosFor(carbRecipe, portions.carb.grams_cooked));
-  if (vegRecipe) macros = addMacros(macros, macrosFor(vegRecipe, portions.veg.grams_cooked));
-  if (extraRecipe) macros = addMacros(macros, macrosFor(extraRecipe, portions.extra.grams_cooked));
+  if (proteinRecipe) macros = addMacros(macros, macrosForRecipe(proteinRecipe, portions.protein.grams_cooked));
+  if (carbRecipe) macros = addMacros(macros, macrosForRecipe(carbRecipe, portions.carb.grams_cooked));
+  if (vegRecipe) macros = addMacros(macros, macrosForRecipe(vegRecipe, portions.veg.grams_cooked));
+  if (extraRecipe) macros = addMacros(macros, macrosForRecipe(extraRecipe, portions.extra.grams_cooked));
 
   return { incomplete, portions, macros, target };
 }

@@ -30,6 +30,25 @@ export type PlanMealRow = {
   updated_at: string;
 };
 
+export type PlanPortionRow = {
+  id: string;
+  account_id: string;
+  plan_id: string;
+  person_id: string;
+  date: string;
+  meal_slot: MealSlot;
+  category: "protein" | "carb" | "veg" | "extra";
+  grams_cooked: number;
+  is_manual: boolean;
+  clamp_applied: boolean;
+  kcal: number;
+  protein_g: number;
+  carbs_g: number;
+  fat_g: number;
+  created_at: string;
+  updated_at: string;
+};
+
 export async function getOrCreateWeeklyPlan(weekStartDate: string): Promise<WeeklyPlanRow> {
   const user = await requireUser();
   const supabase = await createSupabaseServerClient();
@@ -103,4 +122,32 @@ export async function publishWeeklyPlan(planId: string) {
 
   if (error) throw new Error(error.message);
   return data as WeeklyPlanRow;
+}
+
+export async function replacePlanPortions(
+  planId: string,
+  portions: Omit<PlanPortionRow, "id" | "account_id" | "created_at" | "updated_at">[],
+) {
+  const user = await requireUser();
+  const supabase = await createSupabaseServerClient();
+
+  const { error: deleteError } = await supabase
+    .from("plan_portions")
+    .delete()
+    .eq("account_id", user.id)
+    .eq("plan_id", planId);
+  if (deleteError) throw new Error(deleteError.message);
+
+  if (portions.length === 0) return;
+
+  const now = new Date().toISOString();
+  const { error: insertError } = await supabase.from("plan_portions").insert(
+    portions.map((p) => ({
+      ...p,
+      account_id: user.id,
+      created_at: now,
+      updated_at: now,
+    })),
+  );
+  if (insertError) throw new Error(insertError.message);
 }
