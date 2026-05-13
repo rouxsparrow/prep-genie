@@ -111,6 +111,10 @@ export default async function PlannerPage({
       <div className="space-y-6">
         {people.map((person) => {
           const slots = mealSlotsByCount[person.meals_per_day];
+          const personMeals = meals.filter((m) => m.person_id === person.id);
+          const incompleteCount = personMeals.filter(
+            (m) => !m.protein_recipe_id || !m.carb_recipe_id || !m.veg_recipe_id,
+          ).length;
 
           return (
             <section key={person.id} className="rounded-lg border bg-white p-4">
@@ -119,6 +123,13 @@ export default async function PlannerPage({
                   <div className="font-medium">{person.name}</div>
                   <div className="text-sm text-zinc-600">{person.meals_per_day} meals/day</div>
                 </div>
+                {incompleteCount > 0 ? (
+                  <div className="text-sm font-medium text-amber-800">
+                    {incompleteCount} incomplete slot{incompleteCount === 1 ? "" : "s"}
+                  </div>
+                ) : (
+                  <div className="text-sm font-medium text-emerald-700">All complete</div>
+                )}
               </div>
 
               <div className="grid gap-4">
