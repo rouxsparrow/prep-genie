@@ -1,40 +1,36 @@
-# [Project Name]
+# Prep Genie
 
 ## What This Is
 
-Briefly describe the product in 2-4 sentences.
+Prep Genie web app for people who do weekly meal prep for themselves/family. Planner logs in, sets nutrition goals per Person, saves recipes, builds week plan (Mon–Sun), then system computes cooked gram portions per meal slot to hit macro targets (within tolerances) and generates shopping list from saved plan.
 
-Include:
-- Who it is for
-- What problem it solves
-- Main workflow
-- Important domain/context constraints
-
-Example:
-A private household finance analyzer that imports bank statement PDFs, categorizes transactions, and shows spending analytics for household members.
+Domain constraints:
+- Weekly planning anchored to real calendar week (Mon–Sun)
+- Coverage fixed at 80% daily goals (meals combined)
+- Slot ratios fixed by meals/day (2 meals: 50/50, 3 meals: 20/40/40)
+- Portion rounding nearest 5g
 
 ---
 
 ## Core Value
 
-Describe the main value in one sentence.
-
-Example:
-Users can understand where their money goes by importing statements, auto-categorizing transactions, and viewing spending breakdowns over time.
+Structured weekly meal planning that auto-optimizes portions to nutrition goals and outputs shopping list.
 
 ---
 
 ## Current Milestone
 
-**Milestone:** [vX.X Milestone Name]  
-**Goal:** Briefly describe what this milestone is trying to improve or deliver.
+**Milestone:** v0.1 MVP  
+**Goal:** End-to-end flow: auth → manage People/Recipes → plan week → compute portions (manual adjust) → publish snapshot → shopping list.
 
 ### Target Features
 
-- 
-- 
-- 
-- 
+- Supabase Auth email sign-in/up
+- People profiles with daily goals, meals/day, clamps
+- Recipe CRUD + strict JSON import
+- Weekly planner (click-to-assign) + publish snapshot
+- Portion solver + manual adjustment + deviation/clamp highlight
+- Shopping list with yield conversion rules
 
 ---
 
@@ -42,30 +38,21 @@ Users can understand where their money goes by importing statements, auto-catego
 
 ### Validated
 
-Keep only major validated capabilities, not every tiny requirement.
+- (none yet)
 
-- ✓ **AUTH**: Users can log in and access the app based on role.
-- ✓ **IMPORT**: Admin can import supported statement files.
-- ✓ **CATEGORIZATION**: Transactions can be categorized using editable rules.
-- ✓ **ANALYTICS**: Users can view spending summaries and breakdowns.
-- ✓ **INFRA**: Core platform, database, auth, and UI foundation are in place.
+### Active (v0.1 MVP)
 
-### Active
-
-Current milestone requirements only.
-
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ] Auth + dev-only admin bypass
+- [ ] People + Recipes + Recipe JSON import
+- [ ] Weekly planner (Mon–Sun) with meal composition rules
+- [ ] Portion solver + manual adjustments + clamps/tolerances UI
+- [ ] Publish snapshot + shopping list (draft/published)
 
 ### Future
 
-Important but not in the current milestone.
-
-- 
-- 
-- 
+- Drag & drop planner UI
+- Store category taxonomy + ingredient normalization rules
+- Multi-user shared household (multiple logins per account)
 
 ---
 
@@ -102,15 +89,15 @@ Important but not in the current milestone.
 
 | Area | Technology |
 |---|---|
-| Frontend |  |
-| Backend |  |
-| Database |  |
-| Auth |  |
-| Hosting |  |
-| UI |  |
-| Charts |  |
-| State / URL State |  |
-| Other |  |
+| Frontend | Next.js (App Router) + TypeScript |
+| Backend | Next.js server actions / route handlers (as needed) |
+| Database | Supabase Postgres |
+| Auth | Supabase Auth (email/password) |
+| Hosting | Local dev + (later) Vercel |
+| UI | Tailwind CSS + shadcn/ui |
+| Charts | (none MVP) |
+| State / URL State | React state + simple URL params where needed |
+| Other | zod for validation, date-fns for week logic |
 
 ---
 
@@ -118,10 +105,13 @@ Important but not in the current milestone.
 
 Project constraints the Agent must respect.
 
-- 
-- 
-- 
-- 
+- Coverage fixed at 80% daily goals for meals combined.
+- Slot ratios fixed by meals/day (2 meals: 50/50; 3 meals: 20/40/40).
+- Meal composition requires Protein+Carb+Veg; Extra optional.
+- Rounding rule: cooked grams nearest 5g.
+- Draft plan stores recipe references only; publish stores computed portion snapshot.
+- RLS enabled for all tables; every row scoped to `auth.uid()` (`account_id`).
+- `admin/admin` bypass only behind env flag; never default-on for deploy.
 
 Example:
 - Currency is SGD only for v1.
@@ -165,11 +155,9 @@ Example:
 
 | Topic | File |
 |---|---|
-| Requirements | `.planning/REQUIREMENTS.md` |
-| Current state | `.planning/state.md` |
-| Feature docs | `docs/features/` |
-| Data model | `docs/data-model.md` |
-| Setup / deployment | `docs/runbooks/` |
+| Requirements | `.docs/REQUIREMENTS.md` |
+| Current state | `.docs/STATE.md` |
+| Setup | `SETUP.md` |
 | Agent rules | `AGENTS.md` |
 
 ---
