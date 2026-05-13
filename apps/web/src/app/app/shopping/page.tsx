@@ -20,11 +20,13 @@ export default async function ShoppingPage({
     params.week && /^\d{4}-\d{2}-\d{2}$/.test(params.week) ? params.week : format(new Date(), "yyyy-MM-dd");
   const weekStart = toWeekStartDateISO(new Date(`${rawWeek}T00:00:00Z`));
 
-  const source = params.source === "published" ? "published" : "draft";
+  const requestedSource = params.source === "published" ? "published" : "draft";
   const group = params.group === "store" ? "store" : "ingredient";
 
   const plan = await getOrCreateWeeklyPlan(weekStart);
   const [people, recipes, meals] = await Promise.all([listPeople(), listRecipes(), listPlanMeals(plan.id)]);
+  const source =
+    requestedSource === "published" && plan.status === "published" ? "published" : "draft";
   const portions = source === "published" ? await listPlanPortions(plan.id) : [];
 
   const recipeById = new Map(recipes.map((r) => [r.id, r]));
@@ -153,7 +155,7 @@ export default async function ShoppingPage({
           </label>
           <label className="flex flex-col gap-1 text-sm">
             <span className="text-xs text-zinc-600">Source</span>
-            <select name="source" defaultValue={source} className="h-10 rounded-md border px-3">
+            <select name="source" defaultValue={requestedSource} className="h-10 rounded-md border px-3">
               <option value="draft">Draft (computed)</option>
               <option value="published">Published snapshot</option>
             </select>
@@ -170,6 +172,17 @@ export default async function ShoppingPage({
           </button>
         </form>
       </div>
+
+      {requestedSource === "published" && plan.status !== "published" ? (
+        <div className="rounded-md border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
+          No published snapshot for this week. Showing draft computed list.
+        </div>
+      ) : null}
+      {source === "draft" ? (
+        <div className="rounded-md border bg-white p-3 text-sm text-zinc-700">
+          Draft mode: shopping list computed from current draft plan and may change as you edit recipes/goals.
+        </div>
+      ) : null}
 
       {groups.map((g) => (
         <section key={g.title} className="rounded-lg border bg-white">
