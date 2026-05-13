@@ -29,7 +29,7 @@ resume_file:
 | Area | Completed | Total | Notes |
 |---|---:|---:|---|
 | Phases | 2 | 7 | Phase 0 and Phase 1 complete |
-| Tasks | 10 | 24 | TASK-001..010 complete |
+| Tasks | 11 | 24 | TASK-001..011 complete |
 
 ---
 
@@ -67,7 +67,6 @@ Only include recent or high-impact decisions needed to resume work.
 
 ## Pending Todos
 
-- [ ] Implement Recipes CRUD `TASK-011`
 - [ ] Implement Recipe JSON import `TASK-012`
 - [ ] Start weekly planner `TASK-013`
 
