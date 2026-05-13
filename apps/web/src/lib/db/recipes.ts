@@ -1,6 +1,7 @@
 import { requireUser } from "@/lib/auth/require-user";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { RecipeRow } from "@/lib/db/types";
+import type { RecipeV1 } from "@/lib/recipes/schema";
 
 export type UpsertRecipeInput = {
   version: 1;
@@ -17,6 +18,24 @@ export type UpsertRecipeInput = {
   notes: string;
   raw_json: unknown;
 };
+
+export function mapRecipeV1ToRowInput(recipe: RecipeV1): UpsertRecipeInput {
+  return {
+    version: 1,
+    name: recipe.name,
+    category: recipe.category,
+    nutrition_kcal_per_100g: recipe.nutrition_per_100g_cooked.kcal,
+    nutrition_protein_g_per_100g: recipe.nutrition_per_100g_cooked.protein_g,
+    nutrition_carbs_g_per_100g: recipe.nutrition_per_100g_cooked.carbs_g,
+    nutrition_fat_g_per_100g: recipe.nutrition_per_100g_cooked.fat_g,
+    yield_factor_cooked_from_raw: recipe.yield_factor_cooked_from_raw,
+    ingredients_g: recipe.ingredients_g,
+    steps: recipe.steps,
+    fridge_life_days: recipe.fridge_life_days,
+    notes: recipe.notes,
+    raw_json: recipe,
+  };
+}
 
 export async function listRecipes(): Promise<RecipeRow[]> {
   const user = await requireUser();
@@ -90,4 +109,3 @@ export async function deleteRecipe(id: string) {
   const { error } = await supabase.from("recipes").delete().eq("account_id", user.id).eq("id", id);
   if (error) throw new Error(error.message);
 }
-

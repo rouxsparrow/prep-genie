@@ -10,11 +10,16 @@ export default async function RecipesListPage() {
       <div className="flex items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold">Recipes</h1>
-          <p className="text-sm text-zinc-600">Stored per account. Import UI comes next.</p>
+          <p className="text-sm text-zinc-600">Stored per account. Import supports v1 JSON.</p>
         </div>
-        <Link className="rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white" href="/app/recipes/new">
-          New recipe
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link className="rounded-md border bg-white px-3 py-2 text-sm font-medium" href="/app/recipes/import">
+            Import JSON
+          </Link>
+          <Link className="rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white" href="/app/recipes/new">
+            New recipe
+          </Link>
+        </div>
       </div>
 
       {recipes.length === 0 ? (
@@ -40,4 +45,3 @@ export default async function RecipesListPage() {
     </div>
   );
 }
-
