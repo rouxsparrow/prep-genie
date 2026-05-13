@@ -58,7 +58,7 @@ For MVP, run the schema using Supabase **Dashboard → SQL Editor**.
 
 - [ ] Open Supabase Dashboard → **SQL Editor**
 - [ ] Run the project schema SQL file:
-  - [ ] `supabase/schema.sql` (placeholder path — will be added when the DB schema task is implemented)
+  - [ ] `supabase/schema.sql`
 - [ ] Verify tables exist and RLS is configured appropriately.
 
 Minimum RLS expectations (high-level):
@@ -124,4 +124,3 @@ Checklist (once implemented):
   - [ ] Confirm policies use `auth.uid()` and match your table ownership columns.
 - [ ] Port already in use:
   - [ ] Stop the other process using 3000, or run Next on a different port (e.g. `npm run dev -- -p 3001`).
-
