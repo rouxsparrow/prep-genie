@@ -1,11 +1,11 @@
 ---
 state_version: 1.0
-project:
-milestone:
-milestone_name:
+project: prep-genie
+milestone: v0.1
+milestone_name: MVP
 status: active
-last_updated: YYYY-MM-DDTHH:mm:ssZ
-last_activity: YYYY-MM-DD
+last_updated: 2026-05-13T08:38:30Z
+last_activity: 2026-05-13
 stopped_at:
 resume_file:
 ---
@@ -14,13 +14,13 @@ resume_file:
 
 ## Current Focus
 
-**Milestone:**  
-**Phase:**  
-**Plan:**  
-**Status:**  
-**Stopped at:**  
+**Milestone:** v0.1 MVP  
+**Phase:** Phase 1: App scaffold + auth  
+**Plan:** Execute tasks in `.docs/.tasks/` order  
+**Status:** active  
+**Stopped at:** Phase 0 docs complete; start Phase 1 Wave 1
 
-**Progress:** [----------] 0%
+**Progress:** [#---------] 10%
 
 ---
 
@@ -28,9 +28,8 @@ resume_file:
 
 | Area | Completed | Total | Notes |
 |---|---:|---:|---|
-| Phases | 0 | 0 |  |
-| Plans | 0 | 0 |  |
-| Tasks | 0 | 0 |  |
+| Phases | 1 | 7 | Phase 0 done (docs/planning) |
+| Tasks | 3 | 24 | TASK-001..003 complete |
 
 ---
 
@@ -38,19 +37,21 @@ resume_file:
 
 ### Goal
 
-Briefly describe what this milestone/phase is trying to achieve.
+Ship Prep Genie MVP flow: auth → people/recipes → weekly planner → portion solver + manual adjust → publish snapshot → shopping list.
 
 ### Scope
 
-- 
-- 
-- 
+- Next.js web app under `apps/web`
+- Supabase Auth + Postgres schema + RLS
+- Planner week (Mon–Sun) + meal composition rules
+- Portion solver + manual adjustment + clamp/tolerance highlighting
+- Shopping list from draft or published
 
 ### Out of Scope
 
-- 
-- 
-- 
+- Drag & drop planner UX (future)
+- Multi-user shared household (future)
+- Recipe scraping / AI meal generation (out of scope)
 
 ---
 
@@ -66,9 +67,9 @@ Only include recent or high-impact decisions needed to resume work.
 
 ## Pending Todos
 
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ] Start `TASK-005` (Next.js scaffold)
+- [ ] Add Supabase schema `TASK-009`
+- [ ] Implement People/Recipes CRUD `TASK-010`/`TASK-011`
 
 ---
 
@@ -84,7 +85,7 @@ Only include recent or high-impact decisions needed to resume work.
 
 | Date | Type | Description | Commit / Ref |
 |---|---|---|---|
-| YYYY-MM-DD | Phase / Plan / Quick Task |  |  |
+| 2026-05-13 | Planning | Updated `.docs` template + project/requirements docs | 812f688, 3eae634, 54344b7, e1f4a35, 2b17a01 |
 
 ---
 
@@ -92,15 +93,18 @@ Only include recent or high-impact decisions needed to resume work.
 
 ### Last Session
 
-**Date:** YYYY-MM-DD  
-**Stopped at:**  
-**Next action:**  
+**Date:** 2026-05-13  
+**Stopped at:** After Phase 0 docs/planning foundation  
+**Next action:** Implement Phase 1 Wave 1 starting with `TASK-005` (create `apps/web` Next.js scaffold)
 
 ### Files to Read First
 
-- 
-- 
-- 
+- `AGENTS.md`
+- `.docs/PROJECT.md`
+- `.docs/REQUIREMENTS.md`
+- `.docs/STATE.md`
+- `.docs/.tasks/.phase-0-docs/TASK-001-fix-task-template.md`
+- `.docs/.tasks/.phase-0-docs/TASK-003-populate-requirements.md`
 
 ---
 
