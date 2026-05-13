@@ -1,87 +1,113 @@
----
-phase: "XX"
-plan: "XX"
-type: execute
-status: pending
-depends_on: []
-requirements:
-  - REQ-01
-files_modified: []
-summary_file: ".planning/phases/XX-phase-name/XX-XX-SUMMARY.md"
+# Task Template (Prep Genie)
+
+Use this template for every task file under `.docs/.tasks/.phase-*/`.
+
+Rules:
+- Task small, executable, one atomic commit
+- Task self-contained for fresh executor
+- Task link to requirement IDs in `.docs/REQUIREMENTS.md`
+
 ---
 
-# Plan XX-XX: [Plan Name]
+# TASK-XXX: [Task Name]
+
+## Status
+
+planned
+
+## Phase
+
+Phase N: [Name]
+
+## Wave
+
+Wave N
+
+## Type
+
+planning | implementation | verification | documentation | refactor | bugfix
+
+## Depends On
+
+- (none)
+
+## Requirements
+
+- REQ-XXX
+- INFR-XX (if infra-only)
 
 ## Objective
 
-Briefly describe what this plan must achieve.
+What outcome task must deliver (1-3 sentences).
 
-Keep this focused on the actual outcome, not a motivational speech for robots pretending to have ambition.
-
-Example:
-Establish the dashboard date-range foundation so later UI plans can reuse one URL-backed state contract.
-
----
-
-## Scope
-
-### In Scope
-
-- 
-- 
-- 
-
-### Out of Scope
-
-- 
-- 
-- 
-
----
-
-## Context to Read First
+## Read First
 
 - `AGENTS.md`
-- `.planning/PROJECT.md`
-- `.planning/REQUIREMENTS.md`
-- `.planning/phases/XX-phase-name/XX-CONTEXT.md`
-- `.planning/phases/XX-phase-name/XX-UI-SPEC.md`
-- `path/to/relevant-file.ts`
-- `path/to/relevant-component.tsx`
-
----
+- `.docs/PROJECT.md`
+- `.docs/REQUIREMENTS.md`
+- `.docs/STATE.md`
+- `path/to/relevant-file`
 
 ## Files Expected to Change
 
-| File | Purpose |
+- `path/to/file`
+
+## Scope
+
+In scope:
+- 
+- 
+
+Out of scope:
+- 
+- 
+
+## Implementation Notes
+
+- Key rules/edge cases.
+- Interfaces/types/schema to follow.
+- Known pitfalls.
+
+## Acceptance Criteria
+
+- [ ] 
+- [ ] 
+- [ ] 
+
+## Verification
+
+| Command | Result |
 |---|---|
-| `path/to/file.ts` |  |
-| `path/to/component.tsx` |  |
+| `npm run lint` | (fill after) |
+| `npm run typecheck` | (fill after) |
 
----
+## Commit Instructions
 
-## Tasks
+Suggested commit message:
 
-### Task 1: [Task Name]
+`type(scope): short description`
 
-**Read first:**
+## Completion Summary
 
-- `path/to/file.ts`
-- `path/to/component.tsx`
+**Status:** planned | in_progress | blocked | complete | skipped | deferred  
+**Commit:** (fill after)  
+**Completed At:** YYYY-MM-DD
 
-**Action:**
+### What Changed
 
-- 
-- 
-- 
+- (fill after)
 
-**Acceptance Criteria:**
+### Files Changed
 
-- [ ] 
-- [ ] 
-- [ ] 
+- (fill after)
 
-**Verify:**
+### Verification
 
-```bash
-# command here
+| Command | Result |
+|---|---|
+| `npm run lint` |  |
+| `npm run typecheck` |  |
+
+### Follow-ups
+
+- None
