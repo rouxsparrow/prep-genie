@@ -15,12 +15,12 @@ resume_file:
 ## Current Focus
 
 **Milestone:** v0.1 MVP  
-**Phase:** Phase 1: App scaffold + auth  
+**Phase:** Phase 2: DB schema + People + Recipes  
 **Plan:** Execute tasks in `.docs/.tasks/` order  
 **Status:** active  
-**Stopped at:** Phase 0 docs complete; start Phase 1 Wave 1
+**Stopped at:** Phase 2 Wave 1 in progress (Recipes CRUD next)
 
-**Progress:** [#---------] 10%
+**Progress:** [####------] 40%
 
 ---
 
@@ -28,8 +28,8 @@ resume_file:
 
 | Area | Completed | Total | Notes |
 |---|---:|---:|---|
-| Phases | 1 | 7 | Phase 0 done (docs/planning) |
-| Tasks | 3 | 24 | TASK-001..003 complete |
+| Phases | 2 | 7 | Phase 0 and Phase 1 complete |
+| Tasks | 10 | 24 | TASK-001..010 complete |
 
 ---
 
@@ -67,9 +67,9 @@ Only include recent or high-impact decisions needed to resume work.
 
 ## Pending Todos
 
-- [ ] Start `TASK-005` (Next.js scaffold)
-- [ ] Add Supabase schema `TASK-009`
-- [ ] Implement People/Recipes CRUD `TASK-010`/`TASK-011`
+- [ ] Implement Recipes CRUD `TASK-011`
+- [ ] Implement Recipe JSON import `TASK-012`
+- [ ] Start weekly planner `TASK-013`
 
 ---
 
@@ -86,6 +86,8 @@ Only include recent or high-impact decisions needed to resume work.
 | Date | Type | Description | Commit / Ref |
 |---|---|---|---|
 | 2026-05-13 | Planning | Updated `.docs` template + project/requirements docs | 812f688, 3eae634, 54344b7, e1f4a35, 2b17a01 |
+| 2026-05-13 | Phase 1 | Next.js scaffold + Supabase helpers + auth + admin bypass | ed6809d, 60e0f38, 47d1d3f, 08e26cf |
+| 2026-05-13 | Phase 2 | DB schema + People CRUD | 6422e97, bf6882f |
 
 ---
 
@@ -94,8 +96,8 @@ Only include recent or high-impact decisions needed to resume work.
 ### Last Session
 
 **Date:** 2026-05-13  
-**Stopped at:** After Phase 0 docs/planning foundation  
-**Next action:** Implement Phase 1 Wave 1 starting with `TASK-005` (create `apps/web` Next.js scaffold)
+**Stopped at:** After People CRUD + build prerender fix  
+**Next action:** Implement `TASK-011` (Recipes CRUD UI) then `TASK-012` (strict recipe JSON import)
 
 ### Files to Read First
 
@@ -103,8 +105,9 @@ Only include recent or high-impact decisions needed to resume work.
 - `.docs/PROJECT.md`
 - `.docs/REQUIREMENTS.md`
 - `.docs/STATE.md`
-- `.docs/.tasks/.phase-0-docs/TASK-001-fix-task-template.md`
-- `.docs/.tasks/.phase-0-docs/TASK-003-populate-requirements.md`
+- `.docs/.tasks/.phase-2-core-data-model/TASK-009-supabase-schema-rls.md`
+- `.docs/.tasks/.phase-2-core-data-model/TASK-010-people-crud.md`
+- `supabase/schema.sql`
 
 ---
 
