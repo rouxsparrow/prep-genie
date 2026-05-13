@@ -10,7 +10,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
   await requireUser();
 
   return (
-    <div className="min-h-dvh bg-zinc-50">
+    <div className="min-h-dvh bg-zinc-50 text-zinc-950">
       <AppNav />
       <main className="mx-auto w-full max-w-6xl px-6 py-8">{children}</main>
     </div>

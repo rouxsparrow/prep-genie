@@ -13,8 +13,10 @@ function NavLink({ href, label }: { href: string; label: string }) {
     <Link
       href={href}
       className={[
-        "rounded-md px-3 py-2 text-sm font-medium",
-        isActive ? "bg-white shadow-sm" : "text-zinc-700 hover:bg-white/60",
+        "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+        isActive
+          ? "bg-zinc-900 text-white shadow-sm"
+          : "text-zinc-900 hover:bg-zinc-100",
       ].join(" ")}
     >
       {label}
@@ -33,10 +35,10 @@ export default function AppNav() {
   }
 
   return (
-    <header className="border-b bg-zinc-50/70 backdrop-blur">
+    <header className="border-b bg-white/80 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-3">
         <div className="flex items-center gap-2">
-          <Link className="text-sm font-semibold" href="/app">
+          <Link className="text-sm font-semibold text-zinc-950" href="/app">
             Prep Genie
           </Link>
           <nav className="ml-4 flex items-center gap-1">
@@ -49,7 +51,7 @@ export default function AppNav() {
         <button
           type="button"
           onClick={signOut}
-          className="rounded-md border bg-white px-3 py-2 text-sm font-medium hover:bg-zinc-50"
+          className="rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm font-medium text-zinc-900 hover:bg-zinc-50"
         >
           Sign out
         </button>
