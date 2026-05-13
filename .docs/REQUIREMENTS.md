@@ -11,15 +11,15 @@
 ### Auth
 
 - [x] **REQ-001**: User can sign up/sign in using Supabase email/password.
-- [ ] **REQ-002**: App supports multi-device sessions (default Supabase behavior).
+- [x] **REQ-002**: App supports multi-device sessions (default Supabase behavior).
 - [x] **REQ-003**: Dev-only admin bypass allows login with `admin/admin` only when env flag enabled.
 
 ### People (Profiles)
 
 - [x] **REQ-010**: User can CRUD People in account.
 - [x] **REQ-011**: Person stores daily goals (kcal/protein/carbs/fat), meals/day (2|3), optional per-category clamps.
-- [ ] **REQ-012**: Coverage fixed at 80% of daily goals for all meals combined.
-- [ ] **REQ-013**: Slot ratios fixed (3 meals: 20/40/40; 2 meals: 50/50).
+- [x] **REQ-012**: Coverage fixed at 80% of daily goals for all meals combined.
+- [x] **REQ-013**: Slot ratios fixed (3 meals: 20/40/40; 2 meals: 50/50).
 - [x] **REQ-014**: Portion grams rounded to nearest 5g.
 
 ### Recipes
@@ -102,8 +102,8 @@
 | Current requirements | 16 |
 | Mapped to phase / plan | 12 |
 | Unmapped | 4 |
-| Complete | 12 |
-| Pending | 4 |
+| Complete | 16 |
+| Pending | 0 |
 
 ---
 
