@@ -54,12 +54,20 @@ Security note:
 
 ## 5) Set Up Database (Hosted)
 
-For MVP, run the schema using Supabase **Dashboard → SQL Editor**.
+For MVP, you can run schema either:
+- Supabase **Dashboard → SQL Editor** (manual), or
+- Local script using `apps/web/.env.local` (recommended once you have DB URL)
 
 - [ ] Open Supabase Dashboard → **SQL Editor**
 - [ ] Run the project schema SQL file:
   - [ ] `supabase/schema.sql`
 - [ ] Verify tables exist and RLS is configured appropriately.
+
+Optional (scripted migrate using `.env.local`):
+- [ ] Add `SUPABASE_DB_URL` to `apps/web/.env.local` (server-only).
+- [ ] Run:
+  - `cd apps/web`
+  - `npm run db:migrate`
 
 Minimum RLS expectations (high-level):
 - [ ] Users can only read/write their own rows (typically via `auth.uid()` checks).
