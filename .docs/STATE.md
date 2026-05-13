@@ -41,7 +41,7 @@ Ship Prep Genie MVP flow: auth → people/recipes → weekly planner → portion
 
 ### Scope
 
-- Next.js web app under `apps/web`
+- Next.js web app at repo root
 - Supabase Auth + Postgres schema + RLS
 - Planner week (Mon–Sun) + meal composition rules
 - Portion solver + manual adjustment + clamp/tolerance highlighting

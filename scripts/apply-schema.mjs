@@ -47,7 +47,7 @@ async function main() {
     process.exit(1);
   }
 
-  const schemaPath = path.resolve(appRoot, "..", "..", "supabase", "schema.sql");
+  const schemaPath = path.resolve(appRoot, "supabase", "schema.sql");
   if (!fs.existsSync(schemaPath)) {
     console.error(`Schema file not found: ${schemaPath}`);
     process.exit(1);
@@ -80,4 +80,3 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-

@@ -21,7 +21,6 @@ This checklist gets the app running locally using a **hosted Supabase** project 
 - [ ] Enter repo:
   - `cd /Users/rouxsparrow/Code/prep-genie`
 - [ ] Install web app deps:
-  - `cd apps/web`
   - `npm install`
 
 ---
@@ -56,7 +55,7 @@ Security note:
 
 For MVP, you can run schema either:
 - Supabase **Dashboard → SQL Editor** (manual), or
-- Local script using `apps/web/.env.local` (recommended once you have DB URL)
+- Local script using `.env.local` (recommended once you have DB URL)
 
 - [ ] Open Supabase Dashboard → **SQL Editor**
 - [ ] Run the project schema SQL file:
@@ -64,9 +63,8 @@ For MVP, you can run schema either:
 - [ ] Verify tables exist and RLS is configured appropriately.
 
 Optional (scripted migrate using `.env.local`):
-- [ ] Add `SUPABASE_DB_URL` to `apps/web/.env.local` (server-only).
+- [ ] Add `SUPABASE_DB_URL` to `.env.local` (server-only).
 - [ ] Run:
-  - `cd apps/web`
   - `npm run db:migrate`
 
 Minimum RLS expectations (high-level):
@@ -79,11 +77,14 @@ Minimum RLS expectations (high-level):
 
 Create a local env file (never commit it):
 
-- [ ] Create `apps/web/.env.local` with:
+- [ ] Create `.env.local` with:
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL="https://<YOUR_PROJECT_REF>.supabase.co"
 NEXT_PUBLIC_SUPABASE_ANON_KEY="<YOUR_SUPABASE_ANON_KEY>"
+
+# For applying `supabase/schema.sql` via `npm run db:migrate`:
+SUPABASE_DB_URL="postgresql://postgres:<YOUR_DB_PASSWORD>@db.<YOUR_PROJECT_REF>.supabase.co:5432/postgres"
 
 # Only add if/when the app needs server-only Supabase admin operations:
 # SUPABASE_SERVICE_ROLE_KEY="<YOUR_SUPABASE_SERVICE_ROLE_KEY>"
@@ -98,7 +99,6 @@ Security notes:
 ## 7) Run the App
 
 - [ ] Start dev server:
-  - `cd apps/web`
   - `npm run dev` (default uses `--no-turbo` to avoid workspace-root RAM spikes; use `npm run dev:turbo` if you want Turbopack)
 - [ ] Open:
   - `http://localhost:3000`
@@ -121,7 +121,7 @@ Checklist (once implemented):
 ## 9) Troubleshooting
 
 - [ ] Blank page / runtime error:
-  - [ ] Check `apps/web/.env.local` exists and values are correct.
+  - [ ] Check `.env.local` exists and values are correct.
   - [ ] Restart `npm run dev` after changing env vars.
 - [ ] Supabase sign-in fails:
   - [ ] Confirm Email provider is enabled.
