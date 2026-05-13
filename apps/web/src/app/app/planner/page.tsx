@@ -72,7 +72,12 @@ export default async function PlannerPage({
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold">Planner</h1>
-          <p className="text-sm text-zinc-600">Week (Mon–Sun): {weekStart}</p>
+          <p className="text-sm text-zinc-600">
+            Week (Mon–Sun): {weekStart} ·{" "}
+            <Link className="underline" href={`/app/planner/portions?week=${weekStart}`}>
+              View portions
+            </Link>
+          </p>
         </div>
         <form
           action={async (formData) => {
