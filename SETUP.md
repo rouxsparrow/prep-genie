@@ -99,7 +99,7 @@ Security notes:
 
 - [ ] Start dev server:
   - `cd apps/web`
-  - `npm run dev`
+  - `npm run dev` (default uses `--no-turbo` to avoid workspace-root RAM spikes; use `npm run dev:turbo` if you want Turbopack)
 - [ ] Open:
   - `http://localhost:3000`
 
