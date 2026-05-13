@@ -151,3 +151,17 @@ export async function replacePlanPortions(
   );
   if (insertError) throw new Error(insertError.message);
 }
+
+export async function listPlanPortions(planId: string): Promise<PlanPortionRow[]> {
+  const user = await requireUser();
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase
+    .from("plan_portions")
+    .select("*")
+    .eq("account_id", user.id)
+    .eq("plan_id", planId);
+
+  if (error) throw new Error(error.message);
+  return data as PlanPortionRow[];
+}
