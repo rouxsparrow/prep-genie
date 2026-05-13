@@ -15,12 +15,12 @@ resume_file:
 ## Current Focus
 
 **Milestone:** v0.1 MVP  
-**Phase:** Phase 2: DB schema + People + Recipes  
+**Phase:** Phase 6: Hardening / QA / Polish  
 **Plan:** Execute tasks in `.docs/.tasks/` order  
 **Status:** active  
-**Stopped at:** Phase 2 Wave 1 in progress (Recipes CRUD next)
+**Stopped at:** MVP core complete; optional DnD deferred
 
-**Progress:** [####------] 40%
+**Progress:** [#########-] 95%
 
 ---
 
@@ -28,8 +28,8 @@ resume_file:
 
 | Area | Completed | Total | Notes |
 |---|---:|---:|---|
-| Phases | 2 | 7 | Phase 0 and Phase 1 complete |
-| Tasks | 11 | 24 | TASK-001..011 complete |
+| Phases | 6 | 7 | Phase 0–6 complete (optional deferred) |
+| Tasks | 23 | 24 | TASK-024 deferred |
 
 ---
 
@@ -67,8 +67,7 @@ Only include recent or high-impact decisions needed to resume work.
 
 ## Pending Todos
 
-- [ ] Implement Recipe JSON import `TASK-012`
-- [ ] Start weekly planner `TASK-013`
+- [ ] Decide if/when to implement drag & drop (TASK-024)
 
 ---
 
@@ -76,7 +75,7 @@ Only include recent or high-impact decisions needed to resume work.
 
 | Area | Issue | Impact | Next Step |
 |---|---|---|---|
-|  |  |  |  |
+| DnD | Optional feature deferred | No drag & drop in MVP | Implement later if desired |
 
 ---
 
@@ -87,6 +86,11 @@ Only include recent or high-impact decisions needed to resume work.
 | 2026-05-13 | Planning | Updated `.docs` template + project/requirements docs | 812f688, 3eae634, 54344b7, e1f4a35, 2b17a01 |
 | 2026-05-13 | Phase 1 | Next.js scaffold + Supabase helpers + auth + admin bypass | ed6809d, 60e0f38, 47d1d3f, 08e26cf |
 | 2026-05-13 | Phase 2 | DB schema + People CRUD | 6422e97, bf6882f |
+| 2026-05-13 | Phase 2 | Recipes CRUD + JSON import | cff3317, d5576fd |
+| 2026-05-13 | Phase 3 | Weekly planner + publish snapshot | c636635, b019604, c1ed455 |
+| 2026-05-13 | Phase 4 | Solver + portions + manual overrides | 47f96b3, 89b4c89, 4f6edee |
+| 2026-05-13 | Phase 5 | Shopping list + toggles + grouping | 8f89785, 5a4807e, 41362dd |
+| 2026-05-13 | Phase 6 | Tests + UX polish | effa9dc, 30f7e2d |
 
 ---
 
@@ -95,8 +99,8 @@ Only include recent or high-impact decisions needed to resume work.
 ### Last Session
 
 **Date:** 2026-05-13  
-**Stopped at:** After People CRUD + build prerender fix  
-**Next action:** Implement `TASK-011` (Recipes CRUD UI) then `TASK-012` (strict recipe JSON import)
+**Stopped at:** MVP core done  
+**Next action:** Deploy / dogfood; optionally implement `TASK-024` DnD
 
 ### Files to Read First
 
@@ -104,8 +108,8 @@ Only include recent or high-impact decisions needed to resume work.
 - `.docs/PROJECT.md`
 - `.docs/REQUIREMENTS.md`
 - `.docs/STATE.md`
-- `.docs/.tasks/.phase-2-core-data-model/TASK-009-supabase-schema-rls.md`
-- `.docs/.tasks/.phase-2-core-data-model/TASK-010-people-crud.md`
+- `.docs/.tasks/.phase-3-primary-workflow/TASK-013-weekly-plan-week-picker.md`
+- `.docs/.tasks/.phase-4-solver/TASK-018-manual-adjustments.md`
 - `supabase/schema.sql`
 
 ---
