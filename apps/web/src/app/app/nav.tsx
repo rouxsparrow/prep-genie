@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
@@ -9,7 +10,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
   const isActive = pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <a
+    <Link
       href={href}
       className={[
         "rounded-md px-3 py-2 text-sm font-medium",
@@ -17,7 +18,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
       ].join(" ")}
     >
       {label}
-    </a>
+    </Link>
   );
 }
 
@@ -35,9 +36,9 @@ export default function AppNav() {
     <header className="border-b bg-zinc-50/70 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-3">
         <div className="flex items-center gap-2">
-          <a className="text-sm font-semibold" href="/app">
+          <Link className="text-sm font-semibold" href="/app">
             Prep Genie
-          </a>
+          </Link>
           <nav className="ml-4 flex items-center gap-1">
             <NavLink href="/app/people" label="People" />
             <NavLink href="/app/recipes" label="Recipes" />
@@ -56,4 +57,3 @@ export default function AppNav() {
     </header>
   );
 }
-
