@@ -27,22 +27,21 @@ create index if not exists people_account_id_idx on public.people (account_id);
 
 alter table public.people enable row level security;
 
-create policy people_select_own on public.people
-  for select
-  using (account_id = auth.uid());
-
-create policy people_insert_own on public.people
-  for insert
-  with check (account_id = auth.uid());
-
-create policy people_update_own on public.people
-  for update
-  using (account_id = auth.uid())
-  with check (account_id = auth.uid());
-
-create policy people_delete_own on public.people
-  for delete
-  using (account_id = auth.uid());
+do $$
+begin
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'people' and policyname = 'people_select_own') then
+    create policy people_select_own on public.people for select using (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'people' and policyname = 'people_insert_own') then
+    create policy people_insert_own on public.people for insert with check (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'people' and policyname = 'people_update_own') then
+    create policy people_update_own on public.people for update using (account_id = auth.uid()) with check (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'people' and policyname = 'people_delete_own') then
+    create policy people_delete_own on public.people for delete using (account_id = auth.uid());
+  end if;
+end $$;
 
 -- -----------------------------
 -- recipes
@@ -79,22 +78,21 @@ create unique index if not exists recipes_account_name_uidx on public.recipes (a
 
 alter table public.recipes enable row level security;
 
-create policy recipes_select_own on public.recipes
-  for select
-  using (account_id = auth.uid());
-
-create policy recipes_insert_own on public.recipes
-  for insert
-  with check (account_id = auth.uid());
-
-create policy recipes_update_own on public.recipes
-  for update
-  using (account_id = auth.uid())
-  with check (account_id = auth.uid());
-
-create policy recipes_delete_own on public.recipes
-  for delete
-  using (account_id = auth.uid());
+do $$
+begin
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'recipes' and policyname = 'recipes_select_own') then
+    create policy recipes_select_own on public.recipes for select using (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'recipes' and policyname = 'recipes_insert_own') then
+    create policy recipes_insert_own on public.recipes for insert with check (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'recipes' and policyname = 'recipes_update_own') then
+    create policy recipes_update_own on public.recipes for update using (account_id = auth.uid()) with check (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'recipes' and policyname = 'recipes_delete_own') then
+    create policy recipes_delete_own on public.recipes for delete using (account_id = auth.uid());
+  end if;
+end $$;
 
 -- -----------------------------
 -- weekly_plans
@@ -117,17 +115,21 @@ create index if not exists weekly_plans_account_id_week_idx on public.weekly_pla
 
 alter table public.weekly_plans enable row level security;
 
-create policy weekly_plans_select_own on public.weekly_plans
-  for select using (account_id = auth.uid());
-
-create policy weekly_plans_insert_own on public.weekly_plans
-  for insert with check (account_id = auth.uid());
-
-create policy weekly_plans_update_own on public.weekly_plans
-  for update using (account_id = auth.uid()) with check (account_id = auth.uid());
-
-create policy weekly_plans_delete_own on public.weekly_plans
-  for delete using (account_id = auth.uid());
+do $$
+begin
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'weekly_plans' and policyname = 'weekly_plans_select_own') then
+    create policy weekly_plans_select_own on public.weekly_plans for select using (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'weekly_plans' and policyname = 'weekly_plans_insert_own') then
+    create policy weekly_plans_insert_own on public.weekly_plans for insert with check (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'weekly_plans' and policyname = 'weekly_plans_update_own') then
+    create policy weekly_plans_update_own on public.weekly_plans for update using (account_id = auth.uid()) with check (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'weekly_plans' and policyname = 'weekly_plans_delete_own') then
+    create policy weekly_plans_delete_own on public.weekly_plans for delete using (account_id = auth.uid());
+  end if;
+end $$;
 
 -- -----------------------------
 -- plan_meals
@@ -157,17 +159,21 @@ create index if not exists plan_meals_account_date_idx on public.plan_meals (acc
 
 alter table public.plan_meals enable row level security;
 
-create policy plan_meals_select_own on public.plan_meals
-  for select using (account_id = auth.uid());
-
-create policy plan_meals_insert_own on public.plan_meals
-  for insert with check (account_id = auth.uid());
-
-create policy plan_meals_update_own on public.plan_meals
-  for update using (account_id = auth.uid()) with check (account_id = auth.uid());
-
-create policy plan_meals_delete_own on public.plan_meals
-  for delete using (account_id = auth.uid());
+do $$
+begin
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'plan_meals' and policyname = 'plan_meals_select_own') then
+    create policy plan_meals_select_own on public.plan_meals for select using (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'plan_meals' and policyname = 'plan_meals_insert_own') then
+    create policy plan_meals_insert_own on public.plan_meals for insert with check (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'plan_meals' and policyname = 'plan_meals_update_own') then
+    create policy plan_meals_update_own on public.plan_meals for update using (account_id = auth.uid()) with check (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'plan_meals' and policyname = 'plan_meals_delete_own') then
+    create policy plan_meals_delete_own on public.plan_meals for delete using (account_id = auth.uid());
+  end if;
+end $$;
 
 -- -----------------------------
 -- plan_portions (publish snapshot)
@@ -201,14 +207,18 @@ create index if not exists plan_portions_plan_idx on public.plan_portions (plan_
 
 alter table public.plan_portions enable row level security;
 
-create policy plan_portions_select_own on public.plan_portions
-  for select using (account_id = auth.uid());
-
-create policy plan_portions_insert_own on public.plan_portions
-  for insert with check (account_id = auth.uid());
-
-create policy plan_portions_update_own on public.plan_portions
-  for update using (account_id = auth.uid()) with check (account_id = auth.uid());
-
-create policy plan_portions_delete_own on public.plan_portions
-  for delete using (account_id = auth.uid());
+do $$
+begin
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'plan_portions' and policyname = 'plan_portions_select_own') then
+    create policy plan_portions_select_own on public.plan_portions for select using (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'plan_portions' and policyname = 'plan_portions_insert_own') then
+    create policy plan_portions_insert_own on public.plan_portions for insert with check (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'plan_portions' and policyname = 'plan_portions_update_own') then
+    create policy plan_portions_update_own on public.plan_portions for update using (account_id = auth.uid()) with check (account_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'plan_portions' and policyname = 'plan_portions_delete_own') then
+    create policy plan_portions_delete_own on public.plan_portions for delete using (account_id = auth.uid());
+  end if;
+end $$;
