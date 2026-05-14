@@ -3,7 +3,7 @@
 import { useActionState, useState } from "react";
 
 type ImportState =
-  | { ok: true; recipeId: string }
+  | { ok: true; results: Array<{ id: string; name: string }> }
   | { ok: false; message: string; fieldErrors?: Record<string, string[]> };
 
 async function importRecipeAction(
@@ -49,7 +49,7 @@ export default function RecipeImportForm() {
   return (
     <form className="space-y-4" action={action}>
       <label className="flex flex-col gap-2">
-        <span className="text-sm font-medium">Recipe JSON</span>
+        <span className="text-sm font-medium">Recipe JSON (array)</span>
         <textarea
           className="min-h-[360px] rounded-md border px-3 py-2 font-mono text-xs"
           name="json"
@@ -70,10 +70,16 @@ export default function RecipeImportForm() {
 
       {state && state.ok ? (
         <div className="rounded-md border border-green-200 bg-green-50 p-3 text-sm text-green-900">
-          Imported.{" "}
-          <a className="underline" href={`/app/recipes/${state.recipeId}`}>
-            View recipe
-          </a>
+          <div className="font-medium">Imported {state.results.length} recipe(s)</div>
+          <ul className="mt-2 list-disc space-y-1 pl-5">
+            {state.results.map((r) => (
+              <li key={r.id}>
+                <a className="underline" href={`/app/recipes/${r.id}`}>
+                  {r.name}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       ) : null}
 
@@ -87,4 +93,3 @@ export default function RecipeImportForm() {
     </form>
   );
 }
-

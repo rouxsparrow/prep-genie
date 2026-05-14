@@ -35,4 +35,23 @@ describe("recipeV1Schema", () => {
 
     expect(recipeV1Schema.safeParse(input).success).toBe(false);
   });
+
+  test("batch array rejects if any item invalid", () => {
+    const good = {
+      version: 1,
+      name: "Chicken",
+      category: "protein",
+      nutrition_per_100g_cooked: { kcal: 160, protein_g: 31, carbs_g: 0, fat_g: 4 },
+      yield_factor_cooked_from_raw: 0.75,
+      ingredients_g: [{ name: "chicken breast", grams: 1000, is_main: true }],
+      steps: ["Cook."],
+      fridge_life_days: 4,
+      notes: "",
+    };
+
+    const bad: Record<string, unknown> = { ...good, nutrition_per_100g_cooked: { kcal: "x" } };
+
+    const batchSchema = recipeV1Schema.array();
+    expect(batchSchema.safeParse([good, bad]).success).toBe(false);
+  });
 });

@@ -26,6 +26,7 @@
 
 - [x] **REQ-020**: User can CRUD Recipes in account with normalized fields + `raw_json` snapshot.
 - [x] **REQ-021**: User can paste or upload recipe JSON; system validates strict schema; rejects invalid JSON with field-level errors; no auto-fill defaults.
+  - Note: Import supports JSON array for batch import; upsert by `(account_id, name)` when schema migrated.
 
 ### Weekly planner
 

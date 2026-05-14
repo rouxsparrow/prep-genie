@@ -75,6 +75,7 @@ create table if not exists public.recipes (
 
 create index if not exists recipes_account_id_idx on public.recipes (account_id);
 create index if not exists recipes_category_idx on public.recipes (account_id, category);
+create unique index if not exists recipes_account_name_uidx on public.recipes (account_id, name);
 
 alter table public.recipes enable row level security;
 
@@ -211,4 +212,3 @@ create policy plan_portions_update_own on public.plan_portions
 
 create policy plan_portions_delete_own on public.plan_portions
   for delete using (account_id = auth.uid());
-

@@ -68,6 +68,7 @@ Only include recent or high-impact decisions needed to resume work.
 ## Pending Todos
 
 - [ ] Decide if/when to implement drag & drop (TASK-024)
+- [ ] Apply new `recipes(account_id,name)` unique index to Supabase DB (TASK-025) if not migrated yet
 
 ---
 
@@ -76,6 +77,7 @@ Only include recent or high-impact decisions needed to resume work.
 | Area | Issue | Impact | Next Step |
 |---|---|---|---|
 | DnD | Optional feature deferred | No drag & drop in MVP | Implement later if desired |
+| DB schema | `recipes(account_id,name)` unique index may fail if duplicates exist | Batch import upsert needs index | Run duplicate pre-check query, dedupe, re-apply schema |
 
 ---
 
